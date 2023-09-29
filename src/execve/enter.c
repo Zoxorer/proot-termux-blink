@@ -430,7 +430,8 @@ static int expand_runner(Tracee* tracee, char host_path[PATH_MAX], char user_pat
 
 		/* Ensure LD_ features should not be applied to QEMU
 		 * iteself.  */
-		status = ldso_env_passthru(tracee, envp, argv, "-E", "-U", i);
+		// Prevent proot passing -U argument while using to proot qemu mode argument
+		//status = ldso_env_passthru(tracee, envp, argv, "-E", "-U", i);
 		if (status < 0)
 			return status;
 
